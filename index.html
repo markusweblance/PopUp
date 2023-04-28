@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="admin-pop-up.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <button id="open_1" onclick="openFirstModal()">Open modal one</button>
+    </div>
+    <!--  Inner Modal Content  -->
+    <div class="modal-content" id="modal-one" style="display: none">
+        <h1>Modal One</h1>
+        <button id="open_2" onclick="openSecondModal()">Open modal two</button>
+        <button style="background-color: green" onclick="saveModalFirst()">Save</button>
+    </div>
+    <div class="modal-content" id="modal-two" style="display: none">
+        <h1>Modal Two</h1>
+        <button id="open_3" onclick="openThreeModal()">Open modal three</button>
+        <button style="background-color: green" onclick="saveModalSecond()">Save</button>
+    </div>
+    <div class="modal-content" id="modal-three" style="display: none">
+        <h1>Modal Three</h1>
+        <p>The End</p>
+    </div>
+    <script>
+        //first modal
+        const modalOne = new AdminPopUp('modal-one')
+        const modalOneID = modalOne.getID()
+
+        function openFirstModal() {
+            modalOne.openModal()
+        }
+
+        function saveModalFirst() {
+            console.log('modal 1 saved')
+            modalOne.closeModal()
+        }
+
+        //second modal
+        const modalTwo = new AdminPopUp('modal-two', modalOneID)
+        const modalTwoID = modalTwo.getID()
+
+        function openSecondModal() {
+            modalTwo.openModal()
+        }
+
+        function saveModalSecond() {
+            console.log('modal 2 saved')
+            modalTwo.closeModal()
+        }
+
+        //third modal
+        const modalThree = new AdminPopUp('modal-three', modalTwoID)
+        function openThreeModal(){
+            modalThree.openModal()
+        }
+    </script>
+</body>
+</html>
