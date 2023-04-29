@@ -8,55 +8,70 @@
 </head>
 <body>
     <div class="wrapper">
-        <button id="open_1" onclick="openFirstModal()">Open modal one</button>
+        <button data-admin-popup-init>Open modal one</button>
     </div>
     <!--  Inner Modal Content  -->
-    <div class="modal-content" id="modal-one" style="display: none">
+    <!--  Modal 1  -->
+    <div class="modal-content" id="admin-first-modal" style="display: none">
         <h1>Modal One</h1>
-        <button id="open_2" onclick="openSecondModal()">Open modal two</button>
-        <button style="background-color: green" onclick="saveModalFirst()">Save</button>
+        <button data-admin-popup="admin-second-modal">Open modal two</button>
+        <button style="background-color:green" onclick="saveFirstModal()">Save</button>
     </div>
-    <div class="modal-content" id="modal-two" style="display: none">
+    <!--  Modal 2  -->
+    <div class="modal-content" id="admin-second-modal" style="display: none">
         <h1>Modal Two</h1>
-        <button id="open_3" onclick="openThreeModal()">Open modal three</button>
-        <button style="background-color: green" onclick="saveModalSecond()">Save</button>
-    </div>
-    <div class="modal-content" id="modal-three" style="display: none">
-        <h1>Modal Three</h1>
-        <p>The End</p>
+        <button data-admin-popup="admin-third-modal">Create new modal</button>
     </div>
     <script>
-        //first modal
-        const modalOne = new AdminPopUp('modal-one')
-        const modalOneID = modalOne.getID()
+        //modals id's
+        let modalIDS = [
+            'admin-first-modal',
+            'admin-second-modal',
+            'admin-third-modal',
+        ]
+        const modals = new AdminPopUp(modalIDS) // init modals
 
-        function openFirstModal() {
-            modalOne.openModal()
+        // first modal events
+        let firstModal = modals.getModal('admin-first-modal')
+        firstModal.on('open', () => {
+            console.log('Modal 1 open')
+        })
+        firstModal.on('close', () => {
+            console.log('Model 1 closed')
+        })
+
+        // Close modal on click Save button
+        function saveFirstModal(){
+            firstModal.closeModal()
         }
 
-        function saveModalFirst() {
-            console.log('modal 1 saved')
-            modalOne.closeModal()
-        }
+        //second modal events
+        let secondModal = modals.getModal('admin-second-modal')
+        secondModal.on('open', () => {
+            console.log('Modal 2 open')
+        })
+        secondModal.on('close', () => {
+            console.log('Model 2 closed')
+        })
 
-        //second modal
-        const modalTwo = new AdminPopUp('modal-two', modalOneID)
-        const modalTwoID = modalTwo.getID()
-
-        function openSecondModal() {
-            modalTwo.openModal()
-        }
-
-        function saveModalSecond() {
-            console.log('modal 2 saved')
-            modalTwo.closeModal()
-        }
-
-        //third modal
-        const modalThree = new AdminPopUp('modal-three', modalTwoID)
-        function openThreeModal(){
-            modalThree.openModal()
-        }
+        //third modal events (new modal) set random square
+        let thirdModal = modals.getModal('admin-third-modal')
+        thirdModal.on('open', () => {
+            console.log('Modal 3 open')
+            let modal = document.getElementById('admin-third-modal')
+            let modalContent = document.createElement('div')
+            modal.appendChild(modalContent)
+            let arr = ['red', 'green', 'black', 'gray', 'red', 'green', 'black', 'gray'];
+            let rand = Math.floor(Math.random() * arr.length);
+            modal.insertAdjacentHTML('afterbegin', `
+                <div style="padding: 50px 0 0 50px">
+                    <div style="width: 50px; height: 50px; background-color: ${arr[rand]}"></div>
+                </div>
+            `)
+        })
+        thirdModal.on('close', () => {
+            console.log('Model 3 closed')
+        })
     </script>
 </body>
 </html>
