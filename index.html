@@ -1,77 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="admin-pop-up.js"></script>
-</head>
-<body>
-    <div class="wrapper">
-        <button data-admin-popup-init>Open modal one</button>
-    </div>
-    <!--  Inner Modal Content  -->
-    <!--  Modal 1  -->
-    <div class="modal-content" id="admin-first-modal" style="display: none">
-        <h1>Modal One</h1>
-        <button data-admin-popup="admin-second-modal">Open modal two</button>
-        <button style="background-color:green" onclick="saveFirstModal()">Save</button>
-    </div>
-    <!--  Modal 2  -->
-    <div class="modal-content" id="admin-second-modal" style="display: none">
-        <h1>Modal Two</h1>
-        <button data-admin-popup="admin-third-modal">Create new modal</button>
-    </div>
-    <script>
-        //modals id's
-        let modalIDS = [
-            'admin-first-modal',
-            'admin-second-modal',
-            'admin-third-modal',
-        ]
-        const modals = new AdminPopUp(modalIDS) // init modals
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="admin-pop-up.js"></script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <button data-admin-popup-init>Open modal one</button>
+        </div>
+        <!--  Inner Modal Content  -->
+        <!--  Modal 1  -->
+        <div class="modal-content" id="admin-first-modal" style="display: none">
+            <h1>Modal One</h1>
+            <button data-admin-popup="admin-second-modal">
+                Open modal two
+            </button>
+            <button style="background-color: green" onclick="saveFirstModal()">
+                Save
+            </button>
+        </div>
+        <!--  Modal 2  -->
+        <div
+            class="modal-content"
+            id="admin-second-modal"
+            style="display: none"
+        >
+            <h1>Modal Two</h1>
+            <button data-admin-popup="admin-third-modal">
+                Create new modal
+            </button>
+        </div>
+        <script>
+            //modals id's
+            let modalIDS = [
+                "admin-first-modal",
+                "admin-second-modal",
+                "admin-third-modal",
+            ];
+            const modals = new AdminPopUp(modalIDS); // init modals
 
-        // first modal events
-        let firstModal = modals.getModal('admin-first-modal')
-        firstModal.on('open', () => {
-            console.log('Modal 1 open')
-        })
-        firstModal.on('close', () => {
-            console.log('Model 1 closed')
-        })
+            // first modal events test
+            // test t
+            let firstModal = modals.getModal("admin-first-modal");
+            firstModal.on("open", () => {
+                console.log("Modal 1 open");
+            });
+            firstModal.on("close", () => {
+                console.log("Model 1 closed");
+            });
 
-        // Close modal on click Save button
-        function saveFirstModal(){
-            firstModal.closeModal()
-        }
+            // Close modal on click Save button
+            function saveFirstModal() {
+                firstModal.closeModal();
+            }
 
-        //second modal events
-        let secondModal = modals.getModal('admin-second-modal')
-        secondModal.on('open', () => {
-            console.log('Modal 2 open')
-        })
-        secondModal.on('close', () => {
-            console.log('Model 2 closed')
-        })
+            //second modal events
+            let secondModal = modals.getModal("admin-second-modal");
+            secondModal.on("open", () => {
+                console.log("Modal 2 open");
+            });
+            secondModal.on("close", () => {
+                console.log("Model 2 closed");
+            });
 
-        //third modal events (new modal) set random square
-        let thirdModal = modals.getModal('admin-third-modal')
-        thirdModal.on('open', () => {
-            console.log('Modal 3 open')
-            let modal = document.getElementById('admin-third-modal')
-            let modalContent = document.createElement('div')
-            modal.appendChild(modalContent)
-            let arr = ['red', 'green', 'black', 'gray', 'red', 'green', 'black', 'gray'];
-            let rand = Math.floor(Math.random() * arr.length);
-            modal.insertAdjacentHTML('afterbegin', `
+            //third modal events (new modal) set random square
+            let thirdModal = modals.getModal("admin-third-modal");
+            thirdModal.on("open", () => {
+                console.log("Modal 3 open");
+                let modal = document.getElementById("admin-third-modal");
+                let modalContent = document.createElement("div");
+                modal.appendChild(modalContent);
+                let arr = [
+                    "red",
+                    "green",
+                    "black",
+                    "gray",
+                    "red",
+                    "green",
+                    "black",
+                    "gray",
+                ];
+                let rand = Math.floor(Math.random() * arr.length);
+                modal.insertAdjacentHTML(
+                    "afterbegin",
+                    `
                 <div style="padding: 50px 0 0 50px">
                     <div style="width: 50px; height: 50px; background-color: ${arr[rand]}"></div>
                 </div>
-            `)
-        })
-        thirdModal.on('close', () => {
-            console.log('Model 3 closed')
-        })
-    </script>
-</body>
+            `,
+                );
+            });
+            thirdModal.on("close", () => {
+                console.log("Model 3 closed");
+            });
+        </script>
+    </body>
 </html>
