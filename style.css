@@ -1,16 +1,17 @@
-.wrapper{
+/* dsdsa */
+.wrapper {
     max-width: 80%;
     margin: 0 auto;
     padding-top: 50px;
 }
 
-.modal-content{
+.modal-content {
     padding: 20px 0 0 20px;
 }
-path{
+path {
     transition: all 0.3s ease-in-out;
 }
-button{
+button {
     outline: none;
     background-color: cornflowerblue;
     border: 1px solid lightblue;
@@ -22,7 +23,7 @@ button{
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 }
-button:hover{
+button:hover {
     color: black;
     background-color: antiquewhite;
 }

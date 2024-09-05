@@ -41,8 +41,7 @@
             ];
             const modals = new AdminPopUp(modalIDS); // init modals
 
-            // first modal events test
-            // test t
+            // first modal events
             let firstModal = modals.getModal("admin-first-modal");
             firstModal.on("open", () => {
                 console.log("Modal 1 open");
@@ -68,7 +67,7 @@
             //third modal events (new modal) set random square
             let thirdModal = modals.getModal("admin-third-modal");
             thirdModal.on("open", () => {
-                console.log("Modal 3 open");
+                consogle.log("Modal 3 open");
                 let modal = document.getElementById("admin-third-modal");
                 let modalContent = document.createElement("div");
                 modal.appendChild(modalContent);
